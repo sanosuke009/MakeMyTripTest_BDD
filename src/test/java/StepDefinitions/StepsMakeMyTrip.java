@@ -27,7 +27,7 @@ public class StepsMakeMyTrip {
 		Assert.assertTrue(DriverManager.launchBrowser(ConfigManager.configGet("URL")));
 	}
     
-	@And("^Search Button is visible$")
+	@And("Search Button is visible")
 	public void waitforsearchbutton()
 	{
 		Assert.assertTrue(PageActions.waitforSearchElement());
