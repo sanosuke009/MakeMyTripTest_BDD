@@ -1,0 +1,8 @@
+<suite name="Make My Trip Test Suite" configfailurepolicy="continue" parallel="false">
+	<test name="My Test" annotations="JDK"
+		preserve-order="true">
+		<classes>
+			<class name="MyTestRunner.TestRunner" />
+		</classes>
+	</test>
+</suite>
