@@ -4,7 +4,7 @@ Feature: Book A Trip in MakeMyTrip
     
    Scenario: Book A Trip And Validate Review Page Title
     Given Make My Trip Home Page is Open in Browser
-    And Click on "Advertisement Close" Button
+    And Click on "Login Button Popup" Button
     And Search Button is visible
     When Select Destination City
     And Select A Date In Calendar
