@@ -5,6 +5,7 @@ import TestManagers.ConfigManager;
 public class PageObj {
 	
 	//Objects of Home Page of MakeMyTrip
+	public static String elmXPLoginButtonPopup = "//div[contains(@class, 'loginModal displayBlock')]";
 	public static String elmXPAdvertiseClose = "//span[@class='langCardClose']";
 	public static String elmXPModalElement = "//div[@data-cy='outsideModal']";
 	public static String elmXPLoginButton = " //div/p[contains(text(),'Login or Create Account')]//ancestor::li";

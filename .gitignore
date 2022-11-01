@@ -4,3 +4,4 @@ Results/
 .gitignore
 .project
 .settings
+/.vscode

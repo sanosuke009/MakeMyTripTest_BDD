@@ -7,6 +7,7 @@ public class ObjPicker {
 		String res = null;
 		switch(key)
 		{
+		case "Login Button Popup" : res = PageObj.elmXPLoginButtonPopup; break;
 		case "Search" : res =  PageObj.elmXPSearchButton; break;
 		case "View Price" : res =  PageObj.elmXPFirstViewPrice; break;
 		case "First View Price" : res =  PageObj.elmXPFirstViewPrice; break;
