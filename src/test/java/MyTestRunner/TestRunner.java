@@ -12,7 +12,7 @@ import cucumber.api.testng.TestNGCucumberRunner;
 
 
 @CucumberOptions(
-    features = "src/test/java/MyFeatures" 
+    features = "src/test/java/MyFeatures/GoogleSearch.feature" 
     ,glue= {"StepDefinitions"}
     ,plugin = {"json:Results/cucumberjson/cucumber.json"}
     )

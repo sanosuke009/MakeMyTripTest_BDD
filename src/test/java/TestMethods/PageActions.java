@@ -4,6 +4,7 @@ import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementClickInterceptedException;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
@@ -191,6 +192,54 @@ public class PageActions {
 			else
 			{
 				ReportingManager.printInReport("The "+buttonName+" is NOT displayed.");
+			}
+			ReportingManager.takeScreenShot();
+		} catch (Exception e) {
+			res = false;
+			e.printStackTrace();
+			ReportingManager.takeScreenShot();
+		}
+		return res;
+		
+	}
+
+	public static boolean typeInField(String text, String fieldName)
+	{
+		boolean res = false;
+		try {
+			
+			WebElement el = BaseC.wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ObjPicker.get(fieldName))));
+			if(el.isDisplayed()) {
+				el.sendKeys(text);
+				res=true;ReportingManager.printInReport("The text "+text+" is entered in "+fieldName);
+			}
+			else
+			{
+				ReportingManager.printInReport("The "+fieldName+" is NOT displayed.");
+			}
+			ReportingManager.takeScreenShot();
+		} catch (Exception e) {
+			res = false;
+			e.printStackTrace();
+			ReportingManager.takeScreenShot();
+		}
+		return res;
+		
+	}
+
+	public static boolean typeENTERInField(String fieldName)
+	{
+		boolean res = false;
+		try {
+			
+			WebElement el = BaseC.wait.until(ExpectedConditions.elementToBeClickable(By.xpath(ObjPicker.get(fieldName))));
+			if(el.isDisplayed()) {
+				el.sendKeys(Keys.RETURN);
+				res=true;ReportingManager.printInReport("ENTER is typed in "+fieldName);
+			}
+			else
+			{
+				ReportingManager.printInReport("The "+fieldName+" is NOT displayed.");
 			}
 			ReportingManager.takeScreenShot();
 		} catch (Exception e) {

@@ -27,4 +27,8 @@ public class PageObj {
 	//Objects of Book Now Page of MakeMyTrip
 	public static String elmXPReviewYourBookingHeader = "//h2[contains(text(),'Complete your booking')]";
 
+	//Objects of Google Search
+	public static String elmXPGoogleSearchInputField = "//input[@title='Search']";
+	public static String elmXPGoogleSearchFirstResultTitle = "(//div[contains(@class,'TzHB6b cLjAic ')])[1]/descendant::h3";
+
 }

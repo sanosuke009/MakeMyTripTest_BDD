@@ -13,13 +13,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
-public class StepsMakeMyTrip {
-	
-	@Before
-	public void initialize(Scenario scenario)
-	{
-		ReportingManager.initScenario(scenario);
-	}
+public class StepsMakeMyTrip{
 	
 	@Given("^Make My Trip Home Page is Open in Browser$")
 	public void openurl()
@@ -49,7 +43,7 @@ public class StepsMakeMyTrip {
 	public void validatereviewbookingheader()
 	{
 		Assert.assertTrue(PageActions.validateReviewYourBooking());
-		DriverManager.closeBrowser();
+		//DriverManager.closeBrowser();
 	}
 	
 	@And("^Click on \"([^\"]*)\" Button$")
