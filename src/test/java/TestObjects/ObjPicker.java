@@ -15,6 +15,9 @@ public class ObjPicker {
 		case "Review your booking" : res = PageObj.elmXPReviewYourBookingHeader; break;
 		case "Advertisement Close" : res = PageObj.elmXPAdvertiseClose; break;
 		case "Lock Price Pop Up" : res = PageObj.elmXPNowLockPricesPopUpCloseOKButton; break;
+
+		case "Google Search" : res = PageObj.elmXPGoogleSearchInputField; break;
+		case "First Search Result" : res = PageObj.elmXPGoogleSearchFirstResultTitle; break;
 		
 		default : res = "None"; 
 		}
