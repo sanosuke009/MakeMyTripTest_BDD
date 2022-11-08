@@ -4,10 +4,7 @@ import org.testng.Assert;
 
 import TestManagers.ConfigManager;
 import TestManagers.DriverManager;
-import TestManagers.ReportingManager;
 import TestMethods.PageActions;
-import cucumber.api.Scenario;
-import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
