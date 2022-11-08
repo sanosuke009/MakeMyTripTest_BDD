@@ -1,28 +1,26 @@
 package TestManagers;
 
+import java.time.Duration;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import TestBaseClass.BaseC;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class DriverManager {
 	
-	//@SuppressWarnings("deprecation")
 	public static boolean launchBrowser(String url)
 	{
 		boolean res = false;
 		try {
-			WebDriverManager.chromedriver().setup();
 			BaseC.driver = BaseC.config.getProperty("headless").equals("true")?
 			new ChromeDriver(getChromeOptions()):new ChromeDriver();
-			BaseC.driver.manage().timeouts().implicitlyWait(Integer.valueOf(BaseC.config.getProperty("implicitwait")), TimeUnit.MILLISECONDS);
-			BaseC.wait = new WebDriverWait(BaseC.driver, Integer.valueOf(BaseC.config.getProperty("explicitwait")));
+			BaseC.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Integer.valueOf(
+				BaseC.config.getProperty("implicitwait"))));
+			BaseC.wait = new WebDriverWait(BaseC.driver, Duration.ofSeconds(Integer.valueOf(
+				BaseC.config.getProperty("explicitwait"))));
 			BaseC.driver.get(url);
 			BaseC.driver.manage().window().maximize();
 			res = true;
