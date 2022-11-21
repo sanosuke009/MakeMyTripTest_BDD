@@ -5,7 +5,7 @@ import java.util.Properties;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import cucumber.api.Scenario;
+import io.cucumber.java.Scenario;
 
 public class BaseC {
 	
