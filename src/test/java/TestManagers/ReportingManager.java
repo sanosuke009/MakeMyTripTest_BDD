@@ -4,7 +4,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 
 import TestBaseClass.BaseC;
-import cucumber.api.Scenario;
+import io.cucumber.java.Scenario;
 
 public class ReportingManager {
 	
@@ -17,12 +17,18 @@ public class ReportingManager {
 	public static void takeScreenShot()
 	{
 		byte[] sc = ((TakesScreenshot)BaseC.driver).getScreenshotAs(OutputType.BYTES);
-		BaseC.scenario.embed(sc, "image/png");
+		BaseC.scenario.attach(sc, "image/png", null);
+	}
+
+	public static void takeScreenShot(String name)
+	{
+		byte[] sc = ((TakesScreenshot)BaseC.driver).getScreenshotAs(OutputType.BYTES);
+		BaseC.scenario.attach(sc, "image/png", name);
 	}
 
 	public static void printInReport(String message)
 	{
-		BaseC.scenario.write(message);
+		BaseC.scenario.log(message);
 		System.out.println(message);
 	}
 }

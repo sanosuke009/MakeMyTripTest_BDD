@@ -1,0 +1,115 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>MakeMyTripTest</groupId>
+  <artifactId>MyTripTest</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>MyTripTest</name>
+  <url>http://maven.apache.org</url>
+  
+    <properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    <maven.compiler.source>1.8</maven.compiler.source>
+	    <maven.compiler.target>1.8</maven.compiler.target>
+	    <maven.build.timestamp.format>ddMMhhmm</maven.build.timestamp.format>
+    </properties>
+
+  <dependencies>
+    <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>4.6.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+    <dependency>
+        <groupId>org.testng</groupId>
+        <artifactId>testng</artifactId>
+        <version>7.5</version>
+        <scope>test</scope>
+    </dependency>
+	<!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
+	<dependency>
+		<groupId>info.cukes</groupId>
+		<artifactId>cucumber-java</artifactId>
+		<version>1.2.5</version>
+	</dependency>
+	<dependency>
+		<groupId>info.cukes</groupId>
+		<artifactId>cucumber-jvm-deps</artifactId>
+		<version>1.0.5</version>
+		<scope>provided</scope>
+	</dependency>
+    <!-- https://mvnrepository.com/artifact/info.cukes/cucumber-testng -->
+    <dependency>
+        <groupId>info.cukes</groupId>
+        <artifactId>cucumber-testng</artifactId>
+        <version>1.2.5</version>
+        <scope>compile</scope>
+    </dependency>
+
+
+  </dependencies>
+    <build>
+    <finalName>MyTestCucumberProject</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M3</version>
+                <configuration>
+					<suiteXmlFiles>
+						<suiteXmlFile>TestNG.xml</suiteXmlFile>
+					</suiteXmlFiles>
+				</configuration>
+            </plugin>
+            <plugin>
+                <groupId>net.masterthought</groupId>
+                <artifactId>maven-cucumber-reporting</artifactId>
+                <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>execution</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <projectName>MyTestCucumberProject</projectName>
+                            <outputDirectory>Results/cucumber-report-html_${maven.build.timestamp}</outputDirectory>
+                            <cucumberOutput>Results/cucumberjson/cucumber.json</cucumberOutput>
+                            <parallelTesting>false</parallelTesting>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+				    <dependency>
+				      <groupId>org.apache.logging.log4j</groupId>
+				      <artifactId>log4j-api</artifactId>
+				      <version>2.6</version>
+				    </dependency>
+				    <dependency>
+				      <groupId>org.apache.logging.log4j</groupId>
+				      <artifactId>log4j-core</artifactId>
+				      <version>2.6</version>
+				    </dependency>
+				    <!-- https://mvnrepository.com/artifact/javax.json/javax.json-api -->
+					<dependency>
+					    <groupId>javax.json</groupId>
+					    <artifactId>javax.json-api</artifactId>
+					    <version>1.1.4</version>
+					</dependency>
+					<!-- https://mvnrepository.com/artifact/javax.json/javax.json-api -->
+					<dependency>
+					    <groupId>javax.json</groupId>
+					    <artifactId>javax.json-api</artifactId>
+					    <version>1.0</version>
+					</dependency>
+				  </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+</project>
