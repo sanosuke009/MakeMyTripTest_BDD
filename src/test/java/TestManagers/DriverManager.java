@@ -1,10 +1,12 @@
 package TestManagers;
 
+import java.net.URL;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.HashMap;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import TestBaseClass.BaseC;
@@ -15,8 +17,11 @@ public class DriverManager {
 	{
 		boolean res = false;
 		try {
-			BaseC.driver = BaseC.config.getProperty("headless").equals("true")?
-			new ChromeDriver(getChromeOptions()):new ChromeDriver();
+			ChromeOptions chromeOpts = getChromeOptions(Boolean.valueOf(BaseC.config.getProperty("headless")));
+			BaseC.driver = BaseC.config.getProperty("docker.host.execution").equals("true")?
+			new RemoteWebDriver(new URL(BaseC.config.getProperty("docker.host.URL")), 
+			chromeOpts): new ChromeDriver(chromeOpts);
+
 			BaseC.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Integer.valueOf(
 				BaseC.config.getProperty("implicitwait"))));
 			BaseC.wait = new WebDriverWait(BaseC.driver, Duration.ofSeconds(Integer.valueOf(
@@ -43,7 +48,8 @@ public class DriverManager {
      *
      * @return the chrome options.
      */
-    public static ChromeOptions getChromeOptions() {
+
+	public static ChromeOptions getChromeOptions(boolean headless) {
         final ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("disable-infobars");
         chromeOptions.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
@@ -54,7 +60,7 @@ public class DriverManager {
         chromeOptions.addArguments("--no-sandbox");
         chromeOptions.addArguments("--disable-dev-shm-usage");
         //chromeOptions.addArguments("--headless");
-		chromeOptions.setHeadless(true);
+		chromeOptions.setHeadless(headless);
         //chromeOptions.addArguments("--window-size=1580,1280");
 
         final HashMap<String, Object> prefs = new HashMap<>();
