@@ -12,10 +12,10 @@ import io.cucumber.java.en.When;
 
 public class StepsMakeMyTrip{
 	
-	@Given("^Make My Trip Home Page is Open in Browser$")
-	public void openurl()
+	@Given("^Make My Trip Home Page is Open in \"([^\"]*)\" Browser$")
+	public void openurl(String browserName)
 	{
-		Assert.assertTrue(DriverManager.launchBrowser(ConfigManager.configGet("URL")));
+		Assert.assertTrue(DriverManager.launchBrowser(ConfigManager.configGet("URL"), browserName));
 	}
     
 	@And("Search Button is visible")

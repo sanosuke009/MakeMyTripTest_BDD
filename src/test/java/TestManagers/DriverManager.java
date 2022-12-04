@@ -6,6 +6,10 @@ import java.util.Collections;
 import java.util.HashMap;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,14 +17,32 @@ import TestBaseClass.BaseC;
 
 public class DriverManager {
 	
-	public static boolean launchBrowser(String url)
+	public static boolean launchBrowser(String url, String browserName)
 	{
 		boolean res = false;
 		try {
-			ChromeOptions chromeOpts = getChromeOptions(Boolean.valueOf(BaseC.config.getProperty("headless")));
-			BaseC.driver = BaseC.config.getProperty("docker.host.execution").equals("true")?
-			new RemoteWebDriver(new URL(BaseC.config.getProperty("docker.host.URL")), 
-			chromeOpts): new ChromeDriver(chromeOpts);
+			
+			if(browserName.equalsIgnoreCase("Edge"))
+			{
+				BaseC.browserOpts = getEdgeOptions(Boolean.valueOf(BaseC.config.getProperty("headless")));
+				BaseC.driver = BaseC.config.getProperty("docker.host.execution").equals("true")?
+				new RemoteWebDriver(new URL(BaseC.config.getProperty("docker.host.URL")), 
+				BaseC.browserOpts): new EdgeDriver((EdgeOptions)BaseC.browserOpts);
+			}
+			else if(browserName.equalsIgnoreCase("Firefox"))
+			{
+				BaseC.browserOpts = getFireFoxOptions(Boolean.valueOf(BaseC.config.getProperty("headless")));
+				BaseC.driver = BaseC.config.getProperty("docker.host.execution").equals("true")?
+				new RemoteWebDriver(new URL(BaseC.config.getProperty("docker.host.URL")), 
+				BaseC.browserOpts): new FirefoxDriver((FirefoxOptions)BaseC.browserOpts);
+			}
+			else
+			{
+				BaseC.browserOpts = getChromeOptions(Boolean.valueOf(BaseC.config.getProperty("headless")));
+				BaseC.driver = BaseC.config.getProperty("docker.host.execution").equals("true")?
+				new RemoteWebDriver(new URL(BaseC.config.getProperty("docker.host.URL")), 
+				BaseC.browserOpts): new ChromeDriver((ChromeOptions)BaseC.browserOpts);
+			}
 
 			BaseC.driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Integer.valueOf(
 				BaseC.config.getProperty("implicitwait"))));
@@ -69,6 +91,30 @@ public class DriverManager {
         chromeOptions.setExperimentalOption("prefs", prefs);
 
         return chromeOptions;
+    }
+
+	/**
+     * Method getFireFoxOptions.
+     *
+     * @return the Firefox options.
+     */
+
+	public static FirefoxOptions getFireFoxOptions(boolean headless) {
+        final FirefoxOptions fireFoxOptions = new FirefoxOptions();
+		fireFoxOptions.setHeadless(headless);
+        return fireFoxOptions;
+    }
+
+	/**
+     * Method getEdgeOptions.
+     *
+     * @return the Edge options.
+     */
+
+	public static EdgeOptions getEdgeOptions(boolean headless) {
+        final EdgeOptions edgeOptions = new EdgeOptions();
+		edgeOptions.setHeadless(headless);
+        return edgeOptions;
     }
 
 }

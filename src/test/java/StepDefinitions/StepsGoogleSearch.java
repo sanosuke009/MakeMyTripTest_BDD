@@ -12,10 +12,10 @@ import io.cucumber.java.en.When;
 
 public class StepsGoogleSearch{
 		
-	@Given("Google Home Page is Open in Browser")
-	public void openurl()
+	@Given("Google Home Page is Open in {string} Browser")
+	public void openurl(String browserName)
 	{
-		Assert.assertTrue(DriverManager.launchBrowser(ConfigManager.configGet("googleURL")));
+		Assert.assertTrue(DriverManager.launchBrowser(ConfigManager.configGet("googleURL"), browserName));
 	}
 
     @Given("Validate {string} Field")
